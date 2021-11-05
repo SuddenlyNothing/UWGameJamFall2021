@@ -1,6 +1,10 @@
 extends Label
 
-onready var unformatted_text = text
+onready var unformatted_text : String = text
+
+# Update text on load.
+func _ready() -> void:
+	update_keys()
 
 # Formats the text.
 # Gets called by InputRemap and InputRemapButton when the keys
