@@ -4,13 +4,19 @@ class_name Player
 export(float) var move_speed : float = 100
 
 onready var flip := $Flip
+onready var flashlight := $FlashLight
 
 var input : Vector2 = Vector2()
+
+
+func _ready() -> void:
+	flashlight.show()
 
 
 func _process(delta : float) -> void:
 	_get_input()
 	_set_facing(input.x)
+	_set_flashlight_dir()
 
 
 func _physics_process(delta : float) -> void:
@@ -35,3 +41,8 @@ func _on_Detector_area_entered(area : Area2D) -> void:
 	if not area.is_in_group("item"):
 		return
 	get_tree().call_group("hud", "collect_item", area.collect().item_name)
+
+# Sets direction of flashlight
+func _set_flashlight_dir() -> void:
+	flashlight.rotation = lerp_angle(flashlight.rotation,
+		(get_local_mouse_position() + Vector2.DOWN * 16).angle(), 0.01)
