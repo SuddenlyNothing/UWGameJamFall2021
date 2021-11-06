@@ -4,7 +4,6 @@ class_name Player
 export(float) var move_speed : float = 100
 
 onready var flip := $Flip
-onready var player_hud := $PlayerHUD
 
 var input : Vector2 = Vector2()
 
@@ -31,17 +30,8 @@ func _get_input() -> void:
 	input.y = Input.get_action_strength("down") - Input.get_action_strength("up")
 	input = input.normalized()
 
-# Adds item to HUD
-func add_item(item_data : Dictionary) -> void:
-	player_hud.add_item(item_data)
-
 # Detects items and collects them
 func _on_Detector_area_entered(area : Area2D) -> void:
 	if not area.is_in_group("item"):
 		return
-	player_hud.collect_item(area.item_name)
-	area.queue_free()
-
-
-func has_all_items() -> bool:
-	return player_hud.has_all_items()
+	get_tree().call_group("hud", "collect_item", area.collect().item_name)

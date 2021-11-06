@@ -1,4 +1,5 @@
 extends CanvasLayer
+class_name HUD
 
 const ItemDisplay := preload("res://Scenes/Characters/Player/ItemDisplay.tscn")
 

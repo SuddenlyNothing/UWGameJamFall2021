@@ -13,4 +13,9 @@ onready var item_info = {
 
 # Tell the player what items it needs so that it can display in the HUD
 func _ready() -> void:
-	get_tree().call_group("player", "add_item", item_info)
+	get_tree().call_group("hud", "add_item", item_info)
+
+# Frees this node and returns the item's info
+func collect() -> Dictionary:
+	queue_free()
+	return item_info
