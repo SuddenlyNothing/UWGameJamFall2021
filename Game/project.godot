@@ -17,7 +17,7 @@ _global_script_classes=[ {
 "base": "CanvasLayer",
 "class": "HUD",
 "language": "GDScript",
-"path": "res://Scenes/UI/HUD.gd"
+"path": "res://Scenes/UI/Gameplay/HUD.gd"
 }, {
 "base": "Area2D",
 "class": "Item",

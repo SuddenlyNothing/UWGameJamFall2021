@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Assets/Temp/TempProgressCountdown.png" type="Texture" id=1]
+[ext_resource path="res://Scenes/UI/Gameplay/TimeProgress.gd" type="Script" id=2]
+
+[node name="TimeProgress" type="TextureProgress"]
+margin_right = 10.0
+margin_bottom = 150.0
+size_flags_horizontal = 2
+size_flags_vertical = 6
+max_value = 1.0
+step = 0.001
+value = 1.0
+texture_progress = ExtResource( 1 )
+fill_mode = 3
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 30.0
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
