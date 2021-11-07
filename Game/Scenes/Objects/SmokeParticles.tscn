@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Assets/Temp/Pollutant-Sheet.png" type="Texture" id=1]
+
+[sub_resource type="CanvasItemMaterial" id=2]
+particles_animation = true
+particles_anim_h_frames = 4
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[node name="SmokeParticles" type="CPUParticles2D"]
+material = SubResource( 2 )
+amount = 64
+local_coords = false
+texture = ExtResource( 1 )
+emission_shape = 1
+emission_sphere_radius = 5.0
+gravity = Vector2( 0, 0 )
+radial_accel = 50.0
+radial_accel_random = 1.0
+anim_speed = 1.0

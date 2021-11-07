@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://icon.png" type="Texture" id=1]
 [ext_resource path="res://Scenes/Characters/Player/Player.gd" type="Script" id=2]
@@ -10,10 +10,8 @@ extents = Vector2( 16, 16 )
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 16, 16 )
 
-[sub_resource type="CircleShape2D" id=3]
-radius = 64.0
-
 [node name="Player" type="KinematicBody2D" groups=["player"]]
+collision_layer = 2
 script = ExtResource( 2 )
 move_speed = 300.0
 
@@ -32,9 +30,16 @@ region_rect = Rect2( 16, 16, 32, 32 )
 
 [node name="Detector" type="Area2D" parent="Flip" groups=["player_detector"]]
 position = Vector2( 0, -16 )
+collision_layer = 2
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Flip/Detector"]
 shape = SubResource( 2 )
+
+[node name="LightCast" type="RayCast2D" parent="."]
+position = Vector2( 0, -16 )
+collision_mask = 5
+collide_with_areas = true
 
 [node name="FlashLight" type="Light2D" parent="."]
 visible = false
@@ -46,11 +51,12 @@ range_z_max = 50
 shadow_enabled = true
 
 [node name="LightArea" type="Area2D" parent="FlashLight"]
+collision_layer = 0
+collision_mask = 4
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="FlashLight/LightArea"]
 polygon = PoolVector2Array( 50, -40, 385, -75, 384, 74, 50, 40 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="FlashLight/LightArea"]
-shape = SubResource( 3 )
-
 [connection signal="area_entered" from="Flip/Detector" to="." method="_on_Detector_area_entered"]
+[connection signal="area_entered" from="FlashLight/LightArea" to="." method="_on_LightArea_area_entered"]
+[connection signal="area_exited" from="FlashLight/LightArea" to="." method="_on_LightArea_area_exited"]
