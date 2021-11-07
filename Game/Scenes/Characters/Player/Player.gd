@@ -6,10 +6,10 @@ export(float) var move_speed : float = 100
 onready var flip := $Flip
 onready var flashlight := $FlashLight
 onready var light_cast := $LightCast
+onready var light_area_collision := $FlashLight/LightArea/CollisionPolygon2D
 
 var light_entered_enemies = {}
 var light_detected_enemies = {}
-
 
 var input : Vector2 = Vector2()
 
@@ -28,6 +28,7 @@ func _process(delta : float) -> void:
 func _physics_process(delta : float) -> void:
 	move_and_slide(input * move_speed)
 	_check_light_entered_enemies()
+	_check_light_detected_enemies()
 	
 
 # Sets the x scale of the flip node to match the given x_dir.
@@ -68,21 +69,68 @@ func _on_LightArea_area_exited(area : Area2D) -> void:
 	if not area in light_detected_enemies:
 		light_entered_enemies.erase(area)
 		return
-	light_cast.remove_exception(area)
+	light_detected_enemies.erase(area)
 	area.undetected()
 
 # Check if any of the enemies detected by the area are
 # actually in the light.
 # Move to light_detected_enemies if true.
 func _check_light_entered_enemies() -> void:
-	for i in light_entered_enemies:
-		for j in i.get_corners():
-			light_cast.cast_to = j - light_cast.global_position
+	for enemy in light_entered_enemies:
+		if _is_enemy_corners_visible(enemy):
+			light_entered_enemies.erase(enemy)
+			light_detected_enemies[enemy] = 1
+			enemy.detected()
+
+# Check if the detected enemies are still visible.
+# If not, return them to light_entered.
+func _check_light_detected_enemies() -> void:
+	for enemy in light_detected_enemies:
+		if not _is_enemy_corners_visible(enemy):
+			light_detected_enemies.erase(enemy)
+			light_entered_enemies[enemy] = 1
+			enemy.undetected()
+
+# Checks if the enemy corners are visible.
+func _is_enemy_corners_visible(enemy : Enemy) -> bool:
+	var light_poly = _polygon_with_offset(light_area_collision.polygon,
+		light_area_collision.global_position, light_area_collision.global_rotation)
+	var intersecting_polys = Geometry.intersect_polygons_2d(enemy.get_corners(), light_poly)
+	for poly in intersecting_polys:
+		var j = 0
+		while j < poly.size():
+			light_cast.cast_to = poly[j] - light_cast.global_position
 			light_cast.force_raycast_update()
 			if light_cast.is_colliding():
-				if light_cast.get_collider() == i:
-					light_entered_enemies.erase(i)
-					light_detected_enemies[i] = 1
-					light_cast.add_exception(i)
-					i.detected()
-					break
+				var collider = light_cast.get_collider()
+				if collider == enemy:
+					light_cast.clear_exceptions()
+					return true
+				if collider is Enemy:
+					# Adds exception if colliding with another enemy.
+					# This should be removed if the enemy has a light occluder.
+					light_cast.add_exception(collider)
+					continue
+			j += 1
+	light_cast.clear_exceptions()
+	return false
+
+## Checks if point is inside light area collision polygon.
+#func _is_point_inside_light_area(p : Vector2) -> bool:
+#	var polygon = _polygon_with_offset(light_area_collision.polygon,
+#		light_area_collision.global_position, flashlight.rotation)
+#	return Geometry.is_point_in_polygon(p, polygon)
+#
+## Checks if point is intersecting light area collision polygon.
+#func _is_polygon_intersecting_light_area(poly : PoolVector2Array) -> bool:
+#	var polygon = _polygon_with_offset(light_area_collision.polygon,
+#		light_area_collision.global_position, flashlight.rotation)
+#	return not Geometry.intersect_polygons_2d(polygon, poly).empty()
+
+
+func _polygon_with_offset(poly : PoolVector2Array, offset : Vector2,
+	rot : float = 0) -> PoolVector2Array:
+		for i in poly.size():
+			poly[i] = poly[i].rotated(rot)
+			poly[i] += offset
+		return poly

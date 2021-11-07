@@ -1,13 +1,13 @@
 extends Area2D
 class_name Enemy
 
-var player : Player
+var player
 
 onready var collision_shape := $CollisionShape2D
 
 # Sets player.
 # Called by the root node for nodes that are in the "needs_player" group.
-func set_player(p : Player) -> void:
+func set_player(p) -> void:
 	player = p
 
 # Called when player shines light on the body.
@@ -25,8 +25,7 @@ func get_corners() -> PoolVector2Array:
 	var corners := PoolVector2Array()
 	var shape_extents : Vector2 = collision_shape.shape.extents
 	corners.append(collision_shape.global_position - shape_extents)
-	corners.append(collision_shape.global_position + shape_extents)
 	corners.append(collision_shape.global_position + Vector2(shape_extents.x, -shape_extents.y))
+	corners.append(collision_shape.global_position + shape_extents)
 	corners.append(collision_shape.global_position + Vector2(-shape_extents.x, shape_extents.y))
-	corners.append(collision_shape.global_position)
 	return corners
