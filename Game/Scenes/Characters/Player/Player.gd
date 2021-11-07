@@ -1,12 +1,13 @@
 extends KinematicBody2D
 class_name Player
 
-export(float) var move_speed : float = 100
+export(float) var move_speed : float = 500
 
 onready var flip := $Flip
 onready var flashlight := $FlashLight
 onready var light_cast := $LightCast
 onready var light_area_collision := $FlashLight/LightArea/CollisionPolygon2D
+onready var animated_sprite := $Flip/AnimatedSprite
 
 var light_entered_enemies = {}
 var light_detected_enemies = {}
@@ -20,8 +21,9 @@ func _ready() -> void:
 
 
 func _process(delta : float) -> void:
+	_set_anim()
 	_get_input()
-	_set_facing(input.x)
+	_set_facing()
 	_set_flashlight_dir()
 
 
@@ -29,13 +31,12 @@ func _physics_process(delta : float) -> void:
 	move_and_slide(input * move_speed)
 	_check_light_entered_enemies()
 	_check_light_detected_enemies()
-	
 
 # Sets the x scale of the flip node to match the given x_dir.
-func _set_facing(x_dir : int) -> void:
-	if x_dir == 0:
+func _set_facing() -> void:
+	if input.x == 0:
 		return
-	if x_dir != flip.scale.x:
+	if sign(input.x) != sign(flip.scale.x):
 		flip.scale.x *= -1
 
 # Sets input to player input.
@@ -134,3 +135,16 @@ func _polygon_with_offset(poly : PoolVector2Array, offset : Vector2,
 			poly[i] = poly[i].rotated(rot)
 			poly[i] += offset
 		return poly
+
+
+func _set_anim() -> void:
+	if input == Vector2():
+		animated_sprite.stop()
+		animated_sprite.frame = 3
+	elif input.x != 0:
+		animated_sprite.play("walk_horizontal")
+	else:
+		if input.y < 0:
+			animated_sprite.play("walk_up")
+		else:
+			animated_sprite.play("walk_down")
