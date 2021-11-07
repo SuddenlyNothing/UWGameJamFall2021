@@ -89,8 +89,7 @@ extents = Vector2( 16, 16 )
 collision_layer = 2
 script = ExtResource( 2 )
 __meta__ = {
-"_edit_horizontal_guides_": [  ],
-"_edit_vertical_guides_": [  ]
+"_edit_horizontal_guides_": [  ]
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -120,10 +119,9 @@ collision_mask = 5
 collide_with_areas = true
 
 [node name="FlashLight" type="Light2D" parent="."]
-visible = false
 position = Vector2( 0, -16 )
 texture = ExtResource( 3 )
-texture_scale = 5.0
+texture_scale = 4.0
 mode = 3
 range_z_min = -50
 range_z_max = 50
@@ -134,7 +132,7 @@ collision_layer = 0
 collision_mask = 4
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="FlashLight/LightArea"]
-polygon = PoolVector2Array( 50, -40, 385, -75, 384, 74, 50, 40 )
+polygon = PoolVector2Array( 200, -160, 1363, -280, 1363, 280, 200, 160 )
 
 [connection signal="area_entered" from="Flip/Detector" to="." method="_on_Detector_area_entered"]
 [connection signal="area_entered" from="FlashLight/LightArea" to="." method="_on_LightArea_area_entered"]
