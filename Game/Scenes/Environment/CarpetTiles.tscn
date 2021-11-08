@@ -34,7 +34,6 @@
 2/z_index = 0
 
 [node name="CarpetTiles" type="TileMap"]
-z_index = -20
 tile_set = SubResource( 1 )
 cell_size = Vector2( 500, 500 )
 format = 1

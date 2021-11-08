@@ -21,9 +21,9 @@ func _ready() -> void:
 
 
 func _process(delta : float) -> void:
-	_set_anim()
 	_get_input()
 	_set_facing()
+	_set_anim()
 	_set_flashlight_dir()
 
 
@@ -34,9 +34,7 @@ func _physics_process(delta : float) -> void:
 
 # Sets the x scale of the flip node to match the given x_dir.
 func _set_facing() -> void:
-	if input.x == 0:
-		return
-	if sign(input.x) != sign(flip.scale.x):
+	if sign(get_local_mouse_position().normalized().x) != sign(flip.scale.x):
 		flip.scale.x *= -1
 
 # Sets input to player input.
@@ -138,13 +136,23 @@ func _polygon_with_offset(poly : PoolVector2Array, offset : Vector2,
 
 
 func _set_anim() -> void:
+	var mouse_angle = get_local_mouse_position().angle()
+	if mouse_angle >= -0.25 * PI and mouse_angle <= 0.25 * PI:
+		animated_sprite.play("walk_horizontal")
+	elif mouse_angle >= -0.75 * PI and mouse_angle <= -0.25 * PI:
+		animated_sprite.play("walk_up")
+	elif mouse_angle >= 0.75 * PI or mouse_angle <= -0.75 * PI:
+		animated_sprite.play("walk_horizontal")
+	else:
+		animated_sprite.play("walk_down")
 	if input == Vector2():
 		animated_sprite.stop()
 		animated_sprite.frame = 3
-	elif input.x != 0:
-		animated_sprite.play("walk_horizontal")
-	else:
-		if input.y < 0:
-			animated_sprite.play("walk_up")
-		else:
-			animated_sprite.play("walk_down")
+	
+#	elif input.x != 0:
+#		animated_sprite.play("walk_horizontal")
+#	else:
+#		if input.y < 0:
+#			animated_sprite.play("walk_up")
+#		else:
+#			animated_sprite.play("walk_down")
