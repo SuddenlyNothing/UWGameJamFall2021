@@ -5,6 +5,8 @@ var player
 
 onready var collision_shape := $CollisionShape2D
 
+var detected := false
+
 # Sets player.
 # Called by the root node for nodes that are in the "needs_player" group.
 func set_player(p) -> void:
@@ -12,11 +14,11 @@ func set_player(p) -> void:
 
 # Called when player shines light on the body.
 func detected() -> void:
-	get_tree().call_group("room_name_display", "display_name", name + " detected")
+	detected = true
 
 # Called when the player stops shining light on the body.
 func undetected() -> void:
-	get_tree().call_group("room_name_display", "display_name", name + " undetected")
+	detected = false
 
 # Called by the player in order to check every corner.
 # Only works for rectangle collision shape.
