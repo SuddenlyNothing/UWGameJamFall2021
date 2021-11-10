@@ -1,0 +1,88 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Scenes/UI/ChangeScene.gd" type="Script" id=2]
+[ext_resource path="res://Scenes/UI/ButtonSFX.gd" type="Script" id=3]
+[ext_resource path="res://Scenes/UI/MainMenu.gd" type="Script" id=4]
+
+[node name="MainMenu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="V" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="V"]
+margin_left = 485.0
+margin_top = 96.0
+margin_right = 538.0
+margin_bottom = 126.0
+size_flags_horizontal = 4
+size_flags_vertical = 6
+text = "Title"
+
+[node name="V" type="VBoxContainer" parent="V"]
+margin_top = 226.0
+margin_right = 1024.0
+margin_bottom = 374.0
+custom_constants/separation = 20
+
+[node name="Play" type="Button" parent="V/V"]
+margin_left = 481.0
+margin_right = 542.0
+margin_bottom = 36.0
+focus_mode = 0
+size_flags_horizontal = 4
+size_flags_vertical = 6
+text = "Play"
+flat = true
+script = ExtResource( 2 )
+next_scene = "res://Scenes/Testing/PrototypeTest.tscn"
+
+[node name="Settings" type="Button" parent="V/V"]
+margin_left = 459.0
+margin_top = 56.0
+margin_right = 565.0
+margin_bottom = 92.0
+focus_mode = 0
+size_flags_horizontal = 4
+size_flags_vertical = 6
+text = "Settings"
+flat = true
+script = ExtResource( 3 )
+
+[node name="Credits" type="Button" parent="V/V"]
+margin_left = 464.0
+margin_top = 112.0
+margin_right = 559.0
+margin_bottom = 148.0
+focus_mode = 0
+size_flags_horizontal = 4
+size_flags_vertical = 6
+text = "Credits"
+flat = true
+script = ExtResource( 2 )
+next_scene = "res://Scenes/UI/Credits.tscn"
+
+[node name="Quit" type="Button" parent="V"]
+margin_left = 482.0
+margin_top = 471.0
+margin_right = 541.0
+margin_bottom = 507.0
+focus_mode = 0
+size_flags_horizontal = 4
+size_flags_vertical = 6
+text = "Quit"
+flat = true
+script = ExtResource( 3 )
+
+[connection signal="pressed" from="V/V/Settings" to="." method="_on_Settings_pressed"]
+[connection signal="pressed" from="V/Quit" to="." method="_on_Quit_pressed"]

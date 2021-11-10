@@ -14,6 +14,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scenes/UI/ButtonSFX.gd"
 }, {
+"base": "ButtonSFX",
+"class": "ChangeScene",
+"language": "GDScript",
+"path": "res://Scenes/UI/ChangeScene.gd"
+}, {
 "base": "Area2D",
 "class": "Enemy",
 "language": "GDScript",
@@ -41,6 +46,7 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "ButtonSFX": "",
+"ChangeScene": "",
 "Enemy": "",
 "HUD": "",
 "Item": "",
@@ -51,7 +57,7 @@ _global_script_class_icons={
 [application]
 
 config/name="UWGameProject"
-run/main_scene="res://Scenes/Testing/PrototypeTest.tscn"
+run/main_scene="res://Scenes/UI/MainMenu.tscn"
 config/icon="res://icon.png"
 
 [autoload]
@@ -61,6 +67,7 @@ Save="*res://Scenes/Globals/Save.gd"
 OptionsMenu="*res://Scenes/UI/Options/OptionsMenu.tscn"
 ScreenFilter="*res://Scenes/Globals/ScreenFilter.tscn"
 Variables="*res://Scenes/Globals/Variables.gd"
+MusicPlayer="*res://Scenes/Globals/MusicPlayer.tscn"
 
 [display]
 

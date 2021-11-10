@@ -13,17 +13,18 @@ __meta__ = {
 }
 
 [node name="ItemTexture" type="TextureRect" parent="."]
-margin_left = 20.0
-margin_top = 3.0
-margin_right = 20.0
-margin_bottom = 3.0
+margin_right = 64.0
+margin_bottom = 64.0
+rect_min_size = Vector2( 64, 64 )
 size_flags_horizontal = 6
 size_flags_vertical = 6
+expand = true
+stretch_mode = 5
 
 [node name="ItemLabel" type="Label" parent="."]
-margin_left = 20.0
-margin_top = 10.0
-margin_right = 20.0
-margin_bottom = 40.0
+margin_left = 32.0
+margin_top = 68.0
+margin_right = 32.0
+margin_bottom = 98.0
 size_flags_horizontal = 6
 size_flags_vertical = 6

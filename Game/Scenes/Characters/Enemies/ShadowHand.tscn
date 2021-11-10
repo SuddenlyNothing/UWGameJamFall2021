@@ -10,7 +10,7 @@ resource_local_to_scene = true
 extents = Vector2( 192, 192 )
 
 [sub_resource type="CircleShape2D" id=3]
-radius = 1000.0
+radius = 2500.0
 
 [sub_resource type="Curve" id=2]
 min_value = 1.0

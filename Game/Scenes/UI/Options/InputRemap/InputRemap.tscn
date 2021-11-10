@@ -3,9 +3,7 @@
 [ext_resource path="res://Scenes/UI/Options/InputRemap/InputRemap.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/UI/ButtonSFX.gd" type="Script" id=2]
 
-[node name="InputRemap" type="Control" groups=[
-"save",
-]]
+[node name="InputRemap" type="Control" groups=["save"]]
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 1 )
@@ -25,40 +23,43 @@ __meta__ = {
 
 [node name="Label" type="Label" parent="V"]
 margin_right = 1024.0
-margin_bottom = 14.0
+margin_bottom = 30.0
 text = "Controls"
 align = 1
 
 [node name="SC" type="ScrollContainer" parent="V"]
-margin_top = 18.0
+margin_top = 34.0
 margin_right = 1024.0
-margin_bottom = 552.0
+margin_bottom = 520.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 scroll_horizontal_enabled = false
 
 [node name="V" type="VBoxContainer" parent="V/SC"]
 margin_right = 1024.0
-margin_bottom = 534.0
+margin_bottom = 486.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/separation = 10
+alignment = 1
 
 [node name="Reset" type="Button" parent="V"]
-margin_left = 489.0
-margin_top = 556.0
-margin_right = 534.0
-margin_bottom = 576.0
+margin_left = 476.0
+margin_top = 524.0
+margin_right = 547.0
+margin_bottom = 560.0
+focus_mode = 0
 size_flags_horizontal = 4
 size_flags_vertical = 4
 text = "reset"
 script = ExtResource( 2 )
 
 [node name="Button" type="Button" parent="V"]
-margin_left = 480.0
-margin_top = 580.0
-margin_right = 543.0
+margin_left = 463.0
+margin_top = 564.0
+margin_right = 561.0
 margin_bottom = 600.0
+focus_mode = 0
 size_flags_horizontal = 4
 size_flags_vertical = 4
 text = "Options"

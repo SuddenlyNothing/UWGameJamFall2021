@@ -1,5 +1,7 @@
 extends Area2D
 
+export(String, FILE, "*.tscn") var next_scene
+
 onready var label := $CL/M/Label
 
 
@@ -10,7 +12,7 @@ func _on_SacrificeArea_body_entered(body):
 	assert(hud_group.size() == 1, "There are too few or too many hud nodes in the scene")
 	var hud : HUD = hud_group[0]
 	if hud.has_all_items():
-		label.text = "You collected all the items!"
+		Global.goto_scene(next_scene)
 	else:
 		label.text = "You have not collected all the items"
 
