@@ -32,7 +32,7 @@ position = Vector2( 9056, 2560 )
 [node name="YSort" type="YSort" parent="."]
 
 [node name="Bed" parent="YSort" instance=ExtResource( 6 )]
-position = Vector2( 10048, 2912 )
+position = Vector2( 10080, 1984 )
 
 [node name="Player" parent="YSort" instance=ExtResource( 4 )]
 position = Vector2( 9088, 3424 )
