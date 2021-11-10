@@ -29,6 +29,10 @@ func _get_transition(delta : float):
 		states.attack:
 			if parent.detected:
 				return states.retreat
+			if not parent.is_player_in_sight:
+				return states.retreat
+			if not parent.is_player_in_ray():
+				return states.retreat
 		states.retreat:
 			if parent.is_in_start_pos_range():
 				return states.idle

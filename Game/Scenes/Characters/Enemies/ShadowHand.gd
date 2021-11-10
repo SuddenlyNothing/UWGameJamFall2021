@@ -7,6 +7,7 @@ onready var hand_sprite := $Sprite
 onready var start_pos := position
 onready var retreat_timer := $RetreatTimer
 onready var label := $Label
+onready var sight_collision := $Sight/CollisionShape2D
 
 var velocity := Vector2()
 var acceleration : float = 500.0
@@ -18,9 +19,11 @@ onready var max_retreat_speed_squared = max_retreat_speed * max_retreat_speed
 var ray_offset : float = 500.0 # Used to make sure the ray isn't hitting the wall it's in
 
 var is_player_in_sight : bool = false
+var difficulty : int = 0 setget set_difficulty
 
 
 func _ready() -> void:
+	set_difficulty(1)
 	arm.points[0] = start_pos
 	arm.points[1] = start_pos
 
@@ -50,6 +53,8 @@ func apply_velocity(delta : float) -> void:
 
 
 func is_player_in_ray() -> bool:
+	if difficulty == 2:
+		return true
 	sight_ray.position = position.direction_to(player.position) * ray_offset
 	sight_ray.cast_to = player.position - sight_ray.global_position
 	sight_ray.force_raycast_update()
@@ -94,3 +99,28 @@ func _on_Hitbox_body_entered(body):
 	if not body.is_in_group("player"):
 		return
 	.show_lose_screen()
+
+
+func set_difficulty(dif : int) -> void:
+	assert(dif >= 0 and dif <= 2, "wrong difficulty level")
+	difficulty = dif
+	match dif:
+		0: # default
+			acceleration = 500
+			max_move_speed = 500
+			sight_collision.shape.radius = 2500
+			sight_collision.call_deferred("set_disabled", false)
+		1: # medium
+			acceleration = 3500.0
+			max_move_speed = 1000.0
+			sight_collision.shape.radius = 3500
+			ray_offset = 700
+			sight_collision.call_deferred("set_disabled", false)
+		2: # impossible
+			acceleration = 14000.0
+			max_move_speed = 2000.0
+			sight_collision.shape.radius = 10000
+			ray_offset = 1000
+			sight_collision.call_deferred("set_disabled", true)
+			yield(get_tree(), "idle_frame")
+			is_player_in_sight = true

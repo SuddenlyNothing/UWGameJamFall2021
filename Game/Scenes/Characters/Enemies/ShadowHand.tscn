@@ -48,7 +48,6 @@ collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sight" index="0"]
-visible = false
 shape = SubResource( 3 )
 
 [node name="SightRay" type="RayCast2D" parent="." index="4"]

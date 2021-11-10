@@ -1,11 +1,14 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Assets/UI/Fonts/ThemeFontPixelLarge.tres" type="DynamicFont" id=1]
 [ext_resource path="res://Scenes/UI/ChangeScene.gd" type="Script" id=2]
+[ext_resource path="res://Scenes/UI/ButtonSFX.gd" type="Script" id=3]
+[ext_resource path="res://Scenes/UI/LoseScreen.gd" type="Script" id=4]
 
 [node name="LoseScreen" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+script = ExtResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -45,8 +48,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 6
 text = "Retry"
 flat = true
-script = ExtResource( 2 )
-next_scene = "res://Scenes/Testing/PrototypeTest.tscn"
+script = ExtResource( 3 )
 
 [node name="Menu" type="Button" parent="V/V"]
 margin_left = 445.0
@@ -60,3 +62,5 @@ text = "Main Menu"
 flat = true
 script = ExtResource( 2 )
 next_scene = "res://Scenes/UI/MainMenu.tscn"
+
+[connection signal="pressed" from="V/V/Retry" to="." method="_on_Retry_pressed"]

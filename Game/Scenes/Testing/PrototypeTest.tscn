@@ -29,13 +29,6 @@ position = Vector2( 5472, 1024 )
 
 [node name="YSort" type="YSort" parent="."]
 
-[node name="Player" parent="YSort" instance=ExtResource( 1 )]
-position = Vector2( -1024, -1376 )
-
-[node name="Camera2D" type="Camera2D" parent="YSort/Player"]
-current = true
-zoom = Vector2( 5, 5 )
-
 [node name="SheepItem" parent="YSort" instance=ExtResource( 5 )]
 position = Vector2( 4448, 1184 )
 
@@ -47,6 +40,9 @@ position = Vector2( 4448, 832 )
 
 [node name="CandleItem" parent="YSort" instance=ExtResource( 12 )]
 position = Vector2( 4736, 928 )
+
+[node name="Player" parent="YSort" instance=ExtResource( 1 )]
+position = Vector2( -608, -1664 )
 
 [node name="HUD" parent="." instance=ExtResource( 7 )]
 

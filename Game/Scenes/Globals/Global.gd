@@ -43,3 +43,7 @@ func _deferred_goto_scene(path : String) -> void:
 # Exits and returns to current scene.
 func restart_scene() -> void:
 	goto_scene(current_scene.filename)
+
+# Goes to previous scene
+func goto_previous_scene() -> void:
+	goto_scene(previous_scene)
