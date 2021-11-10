@@ -126,7 +126,7 @@ collide_with_areas = true
 
 [node name="FlashLight" type="Light2D" parent="."]
 visible = false
-position = Vector2( 0, -16 )
+position = Vector2( 0, -32 )
 texture = ExtResource( 3 )
 texture_scale = 5.0
 mode = 3
