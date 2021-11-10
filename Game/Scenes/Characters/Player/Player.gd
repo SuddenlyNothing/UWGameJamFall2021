@@ -193,6 +193,8 @@ func kill() -> void:
 	get_tree().call_group("shadow_hand", "set_to_attack")
 	flashlight.texture = LostLightMask
 	death_timer.start()
+	MusicPlayer.play("game_over")
+	get_tree().call_group("gameplay_music", "stop_all")
 
 
 func _on_DeathTimer_timeout():

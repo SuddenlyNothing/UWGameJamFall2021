@@ -72,3 +72,4 @@ position = Vector2( -2750, -750 )
 position = Vector2( -3250, -750 )
 
 [node name="GameplayMusic" parent="." instance=ExtResource( 10 )]
+game_duration = 20.0

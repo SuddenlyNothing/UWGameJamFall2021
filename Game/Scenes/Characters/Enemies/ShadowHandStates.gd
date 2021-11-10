@@ -49,6 +49,7 @@ func _enter_state(new_state, old_state) -> void:
 		states.attack:
 			pass
 		states.retreat:
+			parent.retreat_sfx.play()
 			parent.retreat_timer.start()
 
 # Called on exiting state.

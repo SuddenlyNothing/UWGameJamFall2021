@@ -1,7 +1,8 @@
 extends Node
 
 onready var songs := {
-	"title" : $TitleMusic
+	"title" : $TitleMusic,
+	"game_over" : $GameOverMusic
 }
 
 

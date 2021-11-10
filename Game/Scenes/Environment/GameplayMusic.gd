@@ -1,12 +1,13 @@
 extends Node
 
-export(float, 60, 120) var game_duration := 60.0
+export(float, 20, 120) var game_duration := 60.0
 
 onready var timer := $Timer
 onready var music_a := $MusicA
 onready var music_b := $MusicB
 onready var music_c := $MusicC
 onready var music_d := $MusicD
+onready var scared_breathing := $ScaredBreathing
 
 var time_ind = 0
 var time_queue = [0, 0]
@@ -40,6 +41,7 @@ func _on_Timer_timeout():
 		2:
 			music_c.stop()
 			music_d.play()
+			scared_breathing.play()
 	if time_ind < 2:
 		timer.start(time_queue[time_ind])
 	time_ind += 1
@@ -47,3 +49,11 @@ func _on_Timer_timeout():
 
 func _on_MusicD_finished():
 	get_tree().call_group("shadow_hand", "set_difficulty", 2)
+
+
+func stop_all() -> void:
+	music_a.stop()
+	music_b.stop()
+	music_c.stop()
+	music_d.stop()
+	scared_breathing.stop()

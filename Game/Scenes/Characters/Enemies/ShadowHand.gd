@@ -8,6 +8,8 @@ onready var start_pos := position
 onready var retreat_timer := $RetreatTimer
 onready var label := $Label
 onready var sight_collision := $Sight/CollisionShape2D
+onready var retreat_sfx := $RetreatSFX
+onready var collision := $CollisionShape2D
 
 var velocity := Vector2()
 var steering : float = 0.02
@@ -47,7 +49,9 @@ func accelerate_to_player(delta : float) -> void:
 
 func apply_velocity(delta : float) -> void:
 	position += velocity * delta
-	hand_sprite.rotation = start_pos.direction_to(position).angle()
+	var rot = start_pos.direction_to(position).angle()
+	hand_sprite.rotation = rot
+	collision.position = Vector2(80, 0).rotated(rot)
 	arm.points[1] = position
 
 
@@ -119,10 +123,11 @@ func set_difficulty(dif : int) -> void:
 			sight_collision.shape.radius = 3500
 			ray_offset = 700
 		2: # impossible
-			steering = 0.1
+			steering = 0.2
 			max_move_speed = 2000.0
 			sight_collision.shape.radius = 10000
 			ray_offset = 2000
+			retreat_timer.wait_time = 0.3
 
 
 func set_to_attack() -> void:
