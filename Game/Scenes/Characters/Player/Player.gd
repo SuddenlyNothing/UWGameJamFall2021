@@ -16,7 +16,7 @@ var input : Vector2 = Vector2()
 
 
 func _ready() -> void:
-	flashlight.show()
+#	flashlight.show()
 	flashlight.rotation = get_local_mouse_position().angle()
 
 

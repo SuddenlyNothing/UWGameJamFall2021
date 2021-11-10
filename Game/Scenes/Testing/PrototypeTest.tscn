@@ -30,7 +30,7 @@ position = Vector2( 5472, 1024 )
 [node name="YSort" type="YSort" parent="."]
 
 [node name="Player" parent="YSort" instance=ExtResource( 1 )]
-position = Vector2( 3872, 672 )
+position = Vector2( -1024, -1376 )
 
 [node name="Camera2D" type="Camera2D" parent="YSort/Player"]
 current = true

@@ -9,10 +9,12 @@ onready var retreat_timer := $RetreatTimer
 onready var label := $Label
 
 var velocity := Vector2()
-var move_speed : float = 700.0
-var retreat_speed : float = 1400.0
-onready var move_speed_squared = move_speed * move_speed # Prevents a costly square root calculation.
-onready var retreat_speed_squared = retreat_speed * retreat_speed
+var acceleration : float = 700.0
+var retreat_acceleration : float = 7000.0
+var max_move_speed : float = 700.0
+var max_retreat_speed : float = 1400.0
+onready var max_move_speed_squared = max_move_speed * max_move_speed
+onready var max_retreat_speed_squared = max_retreat_speed * max_retreat_speed
 var ray_offset : float = 500.0 # Used to make sure the ray isn't hitting the wall it's in
 
 var is_player_in_sight : bool = false
@@ -28,15 +30,17 @@ func _process(delta : float) -> void:
 
 
 func accelerate_to_start(delta : float) -> void:
-	velocity += position.direction_to(start_pos) * retreat_speed * delta
-	if velocity.length_squared() > retreat_speed_squared:
-		velocity = velocity.normalized() * move_speed
+	velocity += (position.direction_to(start_pos) * retreat_acceleration - velocity) * delta
+#	velocity += position.direction_to(start_pos) * retreat_acceleration * delta
+	if velocity.length_squared() > max_retreat_speed_squared:
+		velocity = velocity.normalized() * max_retreat_speed
 
 
 func accelerate_to_player(delta : float) -> void:
-	velocity += position.direction_to(player.position) * move_speed * delta
-	if velocity.length_squared() > move_speed_squared:
-		velocity = velocity.normalized() * move_speed
+	velocity += (position.direction_to(player.position) * acceleration - velocity) * delta
+#	velocity += position.direction_to(player.position) * acceleration * delta
+	if velocity.length_squared() > max_move_speed_squared:
+		velocity = velocity.normalized() * max_move_speed
 
 
 func apply_velocity(delta : float) -> void:
@@ -56,7 +60,7 @@ func is_player_in_ray() -> bool:
 
 
 func is_in_start_pos_range() -> bool:
-	return position.distance_squared_to(start_pos) < 50
+	return position.distance_squared_to(start_pos) < 200
 
 
 func reset_position() -> void:
