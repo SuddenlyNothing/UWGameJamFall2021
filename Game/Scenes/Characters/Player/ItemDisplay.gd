@@ -25,4 +25,4 @@ func collect() -> void:
 func uncollect() -> void:
 	item_texture.modulate = Color.darkgray
 	item_texture.texture = empty_icon
-	item_texture.modulate.a = 0.2
+	item_texture.modulate.a = 0.5
