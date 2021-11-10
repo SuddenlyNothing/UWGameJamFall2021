@@ -54,6 +54,8 @@ func apply_velocity(delta : float) -> void:
 func is_player_in_ray() -> bool:
 	if always_attack:
 		return true
+	if position.distance_squared_to(player.position) >= ray_offset * ray_offset:
+		return true
 	sight_ray.position = position.direction_to(player.position) * ray_offset
 	sight_ray.cast_to = player.position - sight_ray.global_position
 	sight_ray.force_raycast_update()
