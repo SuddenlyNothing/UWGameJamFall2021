@@ -1,0 +1,62 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Assets/UI/Fonts/ThemeFontPixelLarge.tres" type="DynamicFont" id=1]
+[ext_resource path="res://Scenes/UI/ChangeScene.gd" type="Script" id=2]
+
+[node name="LoseScreen" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="V" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="V"]
+margin_left = 308.0
+margin_top = 91.0
+margin_right = 716.0
+margin_bottom = 207.0
+size_flags_horizontal = 4
+size_flags_vertical = 6
+custom_fonts/font = ExtResource( 1 )
+text = "You Lost"
+
+[node name="V" type="VBoxContainer" parent="V"]
+margin_top = 405.0
+margin_right = 1024.0
+margin_bottom = 497.0
+size_flags_vertical = 6
+custom_constants/separation = 20
+alignment = 1
+
+[node name="Retry" type="Button" parent="V/V"]
+margin_left = 474.0
+margin_right = 550.0
+margin_bottom = 36.0
+focus_mode = 0
+size_flags_horizontal = 4
+size_flags_vertical = 6
+text = "Retry"
+flat = true
+script = ExtResource( 2 )
+next_scene = "res://Scenes/Testing/PrototypeTest.tscn"
+
+[node name="Menu" type="Button" parent="V/V"]
+margin_left = 445.0
+margin_top = 56.0
+margin_right = 579.0
+margin_bottom = 92.0
+focus_mode = 0
+size_flags_horizontal = 4
+size_flags_vertical = 6
+text = "Main Menu"
+flat = true
+script = ExtResource( 2 )
+next_scene = "res://Scenes/UI/MainMenu.tscn"

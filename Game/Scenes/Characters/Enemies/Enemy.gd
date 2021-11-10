@@ -1,6 +1,7 @@
 extends Area2D
 class_name Enemy
 
+export(String, FILE, "*.tscn") var lose_screen
 var player
 
 onready var collision_shape := $CollisionShape2D
@@ -31,3 +32,7 @@ func get_corners() -> PoolVector2Array:
 	corners.append(collision_shape.global_position + shape_extents)
 	corners.append(collision_shape.global_position + Vector2(-shape_extents.x, shape_extents.y))
 	return corners
+
+
+func show_lose_screen() -> void:
+	Global.goto_scene(lose_screen)

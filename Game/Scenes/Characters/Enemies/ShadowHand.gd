@@ -9,9 +9,9 @@ onready var retreat_timer := $RetreatTimer
 onready var label := $Label
 
 var velocity := Vector2()
-var acceleration : float = 700.0
+var acceleration : float = 500.0
 var retreat_acceleration : float = 7000.0
-var max_move_speed : float = 700.0
+var max_move_speed : float = 500.0
 var max_retreat_speed : float = 1400.0
 onready var max_move_speed_squared = max_move_speed * max_move_speed
 onready var max_retreat_speed_squared = max_retreat_speed * max_retreat_speed
@@ -88,3 +88,9 @@ func _on_RetreatTimer_timeout():
 			shadow_hand_states.call_deferred("set_state", "attack")
 			return
 	shadow_hand_states.call_deferred("set_state", "retreat")
+
+
+func _on_Hitbox_body_entered(body):
+	if not body.is_in_group("player"):
+		return
+	.show_lose_screen()
