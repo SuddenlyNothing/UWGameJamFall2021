@@ -41,13 +41,13 @@ size_flags_vertical = 6
 text = "Joseph Kularski - Code and Sound"
 
 [node name="Yerim" type="Label" parent="V/V"]
-margin_left = 347.0
+margin_left = 414.0
 margin_top = 50.0
-margin_right = 676.0
+margin_right = 609.0
 margin_bottom = 80.0
 size_flags_horizontal = 4
 size_flags_vertical = 6
-text = "Yerim Heo - Art and Sound"
+text = "Yerim Heo - Art"
 
 [node name="Bix" type="Label" parent="V/V"]
 margin_left = 446.0
