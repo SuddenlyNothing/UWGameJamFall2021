@@ -13,3 +13,6 @@ margin_bottom = 315.0
 [node name="V" parent="V" index="1"]
 margin_top = 365.0
 margin_bottom = 401.0
+
+[node name="NextLevel" parent="V/V" index="0"]
+next_scene = "res://Scenes/Levels/Night4.tscn"

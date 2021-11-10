@@ -1,0 +1,50 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Scenes/Levels/Night3.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/Characters/Enemies/ShadowHand.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/Levels/Night1.gd" type="Script" id=3]
+
+[node name="Night4" instance=ExtResource( 1 )]
+script = ExtResource( 3 )
+
+[node name="DoorTiles" parent="." index="2"]
+tile_data = PoolIntArray( -196604, 0, 0, -131068, 0, 65536 )
+
+[node name="SacrificeArea" parent="." index="3"]
+position = Vector2( 7950, 3050 )
+next_scene = "res://Scenes/UI/WS4-5.tscn"
+
+[node name="SheepItem" parent="YSort" index="1"]
+position = Vector2( -6650, 1600 )
+
+[node name="SwordItem" parent="YSort" index="2"]
+position = Vector2( -2950, -5250 )
+rotation = 1.5708
+
+[node name="CrayonItem" parent="YSort" index="3"]
+position = Vector2( 6850, 2200 )
+rotation = 1.5708
+
+[node name="CandleItem" parent="YSort" index="4"]
+position = Vector2( -1400, 2250 )
+
+[node name="ShadowHand31" parent="ShadowHands" index="22" instance=ExtResource( 2 )]
+position = Vector2( 5300, 4500 )
+
+[node name="ShadowHand32" parent="ShadowHands" index="23" instance=ExtResource( 2 )]
+position = Vector2( 4800, 4650 )
+
+[node name="ShadowHand33" parent="ShadowHands" index="24" instance=ExtResource( 2 )]
+position = Vector2( -7200, -1400 )
+
+[node name="ShadowHand34" parent="ShadowHands" index="25" instance=ExtResource( 2 )]
+position = Vector2( -6200, -2200 )
+
+[node name="ShadowHand35" parent="ShadowHands" index="26" instance=ExtResource( 2 )]
+position = Vector2( -7250, -350 )
+
+[node name="ShadowHand36" parent="ShadowHands" index="27" instance=ExtResource( 2 )]
+position = Vector2( 200, -4050 )
+
+[node name="ShadowHand37" parent="ShadowHands" index="28" instance=ExtResource( 2 )]
+position = Vector2( 250, -3650 )

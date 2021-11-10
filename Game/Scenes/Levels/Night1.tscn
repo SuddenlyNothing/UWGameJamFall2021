@@ -39,6 +39,7 @@ tile_data = PoolIntArray( -196604, 0, 0, -131068, 0, 65536, 131073, 0, 0, 131079
 
 [node name="SacrificeArea" parent="." instance=ExtResource( 5 )]
 position = Vector2( 7950, 3050 )
+next_scene = "res://Scenes/UI/WS1-2.tscn"
 
 [node name="YSort" type="YSort" parent="."]
 
@@ -159,8 +160,6 @@ position = Vector2( -5250, -350 )
 [node name="Bathtub" parent="YSort" instance=ExtResource( 24 )]
 position = Vector2( -650, 3750 )
 
-[node name="Items" type="Node2D" parent="."]
-
 [node name="ShadowHands" type="Node2D" parent="."]
 
 [node name="GameplayMusic" parent="." instance=ExtResource( 7 )]
@@ -168,6 +167,7 @@ position = Vector2( -650, 3750 )
 [node name="HUD" parent="." instance=ExtResource( 8 )]
 
 [node name="ObjectHiders" type="Node2D" parent="."]
+visible = false
 
 [node name="Bathroom" parent="ObjectHiders" instance=ExtResource( 16 )]
 position = Vector2( -1248, 2240 )

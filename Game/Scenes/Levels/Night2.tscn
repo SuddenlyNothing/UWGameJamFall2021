@@ -1,0 +1,57 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scenes/Levels/Night1.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/Characters/Enemies/ShadowHand.tscn" type="PackedScene" id=2]
+
+[node name="Night2" instance=ExtResource( 1 )]
+
+[node name="DoorTiles" parent="." index="2"]
+tile_data = PoolIntArray( -196604, 0, 0, -131068, 0, 65536, 131073, 0, 0, 131079, 0, 0, 196609, 0, 65536, 196615, 0, 65536 )
+
+[node name="SacrificeArea" parent="." index="3"]
+next_scene = "res://Scenes/UI/WS2-3.tscn"
+
+[node name="SheepItem" parent="YSort" index="1"]
+position = Vector2( 9000, 3150 )
+
+[node name="SwordItem" parent="YSort" index="2"]
+position = Vector2( 4050, 450 )
+
+[node name="CrayonItem" parent="YSort" index="3"]
+position = Vector2( -6550, 3700 )
+
+[node name="CandleItem" parent="YSort" index="4"]
+position = Vector2( -6600, -4650 )
+
+[node name="ShadowHand" parent="ShadowHands" index="0" instance=ExtResource( 2 )]
+position = Vector2( 6500, 1250 )
+
+[node name="ShadowHand2" parent="ShadowHands" index="1" instance=ExtResource( 2 )]
+position = Vector2( 10500, 4500 )
+
+[node name="ShadowHand3" parent="ShadowHands" index="2" instance=ExtResource( 2 )]
+position = Vector2( 10500, 1500 )
+
+[node name="ShadowHand4" parent="ShadowHands" index="3" instance=ExtResource( 2 )]
+position = Vector2( 6500, 4500 )
+
+[node name="ShadowHand5" parent="ShadowHands" index="4" instance=ExtResource( 2 )]
+position = Vector2( -7000, 4500 )
+
+[node name="ShadowHand6" parent="ShadowHands" index="5" instance=ExtResource( 2 )]
+position = Vector2( -7250, -2250 )
+
+[node name="ShadowHand7" parent="ShadowHands" index="6" instance=ExtResource( 2 )]
+position = Vector2( -7250, -6000 )
+
+[node name="ShadowHand8" parent="ShadowHands" index="7" instance=ExtResource( 2 )]
+position = Vector2( 0, -6000 )
+
+[node name="ShadowHand9" parent="ShadowHands" index="8" instance=ExtResource( 2 )]
+position = Vector2( -2000, -2500 )
+
+[node name="ShadowHand10" parent="ShadowHands" index="9" instance=ExtResource( 2 )]
+position = Vector2( -1500, 1500 )
+
+[node name="GameplayMusic" parent="." index="6"]
+game_duration = 270.0

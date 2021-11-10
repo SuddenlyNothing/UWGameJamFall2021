@@ -30,6 +30,8 @@ func _on_Area2D_body_exited(body):
 
 
 func set_visible(val : bool, dur : float = 0.3) -> void:
+	if not t.is_inside_tree():
+		return
 	var start_val : float = 0.0 if val else 1.0
 	var end_val : float = 1.0 if val else 0.0 
 	for i in hide_objects:

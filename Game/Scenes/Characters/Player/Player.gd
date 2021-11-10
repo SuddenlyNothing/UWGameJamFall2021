@@ -3,7 +3,7 @@ class_name Player
 
 const LostLightMask := preload("res://Assets/Temp/LostLightMask.png")
 
-export(float) var move_speed : float = 500
+export(float) var move_speed : float = 1000.0
 export(String, FILE, "*.tscn") var lose_screen
 
 onready var flip := $Flip

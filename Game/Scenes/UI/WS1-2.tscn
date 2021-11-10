@@ -19,6 +19,7 @@ margin_left = 454.0
 margin_top = 0.0
 margin_right = 569.0
 margin_bottom = 36.0
+next_scene = "res://Scenes/Levels/Night2.tscn"
 
 [node name="Menu" parent="V/V" index="1"]
 margin_top = 56.0

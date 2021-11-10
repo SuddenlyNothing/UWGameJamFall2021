@@ -1,6 +1,6 @@
 extends Node
 
-export(float, 20, 120) var game_duration := 60.0
+export(float, 20, 360) var game_duration := 60.0
 
 onready var timer := $Timer
 onready var music_a := $MusicA

@@ -45,7 +45,7 @@ size_flags_vertical = 6
 text = "Play"
 flat = true
 script = ExtResource( 2 )
-next_scene = "res://Scenes/Testing/PrototypeTest.tscn"
+next_scene = "res://Scenes/Levels/Night1.tscn"
 
 [node name="Settings" type="Button" parent="V/V"]
 margin_left = 459.0

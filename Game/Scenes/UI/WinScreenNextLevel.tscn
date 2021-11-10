@@ -10,6 +10,7 @@ margin_left = 445.0
 margin_top = 365.0
 margin_right = 579.0
 margin_bottom = 401.0
+focus_mode = 0
 size_flags_horizontal = 4
 size_flags_vertical = 4
 text = "Next Night"
