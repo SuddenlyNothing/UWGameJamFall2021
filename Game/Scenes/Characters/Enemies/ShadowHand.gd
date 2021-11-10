@@ -120,7 +120,7 @@ func set_difficulty(dif : int) -> void:
 			steering = 0.1
 			max_move_speed = 2000.0
 			sight_collision.shape.radius = 10000
-			ray_offset = 1000
+			ray_offset = 2000
 
 
 func set_to_attack() -> void:

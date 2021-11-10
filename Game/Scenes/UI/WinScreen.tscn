@@ -230,7 +230,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ChangeScene" type="Button" parent="V"]
+[node name="Menu" type="Button" parent="V"]
 margin_left = 445.0
 margin_top = 365.0
 margin_right = 579.0

@@ -1,11 +1,21 @@
 extends Control
 
+
+
+export(String, FILE, "*.tscn") var next_level := ""
+
 onready var animated_sprite := $AnimatedSprite
 onready var squeak_sfx := $SqueakSFX
 onready var pentagram := $AnimatedSprite/Pentagram
 onready var t := $Tween
 onready var ui := $V
 onready var win_music := $WinMusic
+
+
+func _ready() -> void:
+	if next_level == "":
+		return
+	
 
 
 func _on_AnimatedSprite_frame_changed():

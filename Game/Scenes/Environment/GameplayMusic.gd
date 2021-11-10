@@ -36,9 +36,14 @@ func _on_Timer_timeout():
 		1:
 			music_b.stop()
 			music_c.play()
+			get_tree().call_group("shadow_hand", "set_difficulty", 1)
 		2:
 			music_c.stop()
 			music_d.play()
 	if time_ind < 2:
 		timer.start(time_queue[time_ind])
 	time_ind += 1
+
+
+func _on_MusicD_finished():
+	get_tree().call_group("shadow_hand", "set_difficulty", 2)
