@@ -8,6 +8,7 @@ onready var flashlight := $FlashLight
 onready var light_cast := $LightCast
 onready var light_area_collision := $FlashLight/LightArea/CollisionPolygon2D
 onready var animated_sprite := $Flip/AnimatedSprite
+onready var footstep_sfx := $FootstepSFX
 
 var light_entered_enemies = {}
 var light_detected_enemies = {}
@@ -156,3 +157,12 @@ func _set_anim() -> void:
 #			animated_sprite.play("walk_up")
 #		else:
 #			animated_sprite.play("walk_down")
+
+
+func _on_AnimatedSprite_frame_changed():
+	if animated_sprite.is_playing():
+		match animated_sprite.frame:
+			1:
+				footstep_sfx.play()
+			3:
+				footstep_sfx.play()

@@ -1,11 +1,32 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://Assets/Art/spritesheet.png" type="Texture" id=1]
 [ext_resource path="res://Scenes/Characters/Player/Player.gd" type="Script" id=2]
 [ext_resource path="res://Assets/Temp/LightMask.png" type="Texture" id=3]
+[ext_resource path="res://Assets/SFX/footstep.wav" type="AudioStream" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 87, 23 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 500, 500, 500 )
+
+[sub_resource type="AtlasTexture" id=13]
+atlas = ExtResource( 1 )
+region = Rect2( 500, 1500, 500, 500 )
+
+[sub_resource type="AtlasTexture" id=14]
+atlas = ExtResource( 1 )
+region = Rect2( 1000, 1500, 500, 500 )
+
+[sub_resource type="AtlasTexture" id=15]
+atlas = ExtResource( 1 )
+region = Rect2( 1500, 1500, 500, 500 )
+
+[sub_resource type="AtlasTexture" id=16]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 1500, 500, 500 )
 
 [sub_resource type="AtlasTexture" id=5]
 atlas = ExtResource( 1 )
@@ -39,28 +60,18 @@ region = Rect2( 1500, 500, 500, 500 )
 atlas = ExtResource( 1 )
 region = Rect2( 0, 500, 500, 500 )
 
-[sub_resource type="AtlasTexture" id=13]
-atlas = ExtResource( 1 )
-region = Rect2( 500, 1500, 500, 500 )
-
-[sub_resource type="AtlasTexture" id=14]
-atlas = ExtResource( 1 )
-region = Rect2( 1000, 1500, 500, 500 )
-
-[sub_resource type="AtlasTexture" id=15]
-atlas = ExtResource( 1 )
-region = Rect2( 1500, 1500, 500, 500 )
-
-[sub_resource type="AtlasTexture" id=16]
-atlas = ExtResource( 1 )
-region = Rect2( 0, 1500, 500, 500 )
-
-[sub_resource type="AtlasTexture" id=4]
-atlas = ExtResource( 1 )
-region = Rect2( 0, 500, 500, 500 )
-
 [sub_resource type="SpriteFrames" id=3]
 animations = [ {
+"frames": [ SubResource( 4 ) ],
+"loop": false,
+"name": "idle",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ) ],
+"loop": true,
+"name": "walk_horizontal",
+"speed": 7.0
+}, {
 "frames": [ SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ) ],
 "loop": true,
 "name": "walk_up",
@@ -70,20 +81,13 @@ animations = [ {
 "loop": true,
 "name": "walk_down",
 "speed": 7.0
-}, {
-"frames": [ SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ) ],
-"loop": true,
-"name": "walk_horizontal",
-"speed": 7.0
-}, {
-"frames": [ SubResource( 4 ) ],
-"loop": false,
-"name": "idle",
-"speed": 5.0
 } ]
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 16, 16 )
+
+[sub_resource type="AudioStreamRandomPitch" id=17]
+audio_stream = ExtResource( 4 )
 
 [node name="Player" type="KinematicBody2D" groups=["player"]]
 collision_layer = 2
@@ -103,7 +107,6 @@ light_mask = 0
 position = Vector2( 0, -220 )
 frames = SubResource( 3 )
 animation = "walk_down"
-frame = 1
 
 [node name="Detector" type="Area2D" parent="Flip" groups=["player_detector"]]
 position = Vector2( 0, -16 )
@@ -135,6 +138,12 @@ collision_mask = 4
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="FlashLight/LightArea"]
 polygon = PoolVector2Array( 250, -200, 1585, -340, 1585, 340, 250, 200 )
 
+[node name="FootstepSFX" type="AudioStreamPlayer" parent="."]
+stream = SubResource( 17 )
+volume_db = -10.0
+bus = "SFX"
+
+[connection signal="frame_changed" from="Flip/AnimatedSprite" to="." method="_on_AnimatedSprite_frame_changed"]
 [connection signal="area_entered" from="Flip/Detector" to="." method="_on_Detector_area_entered"]
 [connection signal="area_entered" from="FlashLight/LightArea" to="." method="_on_LightArea_area_entered"]
 [connection signal="area_exited" from="FlashLight/LightArea" to="." method="_on_LightArea_area_exited"]
