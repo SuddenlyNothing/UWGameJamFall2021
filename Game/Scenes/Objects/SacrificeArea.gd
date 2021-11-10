@@ -14,7 +14,7 @@ func _on_SacrificeArea_body_entered(body):
 	if hud.has_all_items():
 		Global.goto_scene(next_scene)
 	else:
-		label.text = "You have not collected all the items"
+		label.text = "Collect all the items to appease the demon"
 
 
 func _on_SacrificeArea_body_exited(body):

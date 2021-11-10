@@ -4,7 +4,7 @@
 [ext_resource path="res://Scenes/Objects/SacrificeArea.gd" type="Script" id=2]
 
 [sub_resource type="CircleShape2D" id=1]
-radius = 224.0
+radius = 384.0
 
 [node name="SacrificeArea" type="Area2D"]
 collision_layer = 0
