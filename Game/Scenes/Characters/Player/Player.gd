@@ -54,7 +54,7 @@ func _on_Detector_area_entered(area : Area2D) -> void:
 # Sets direction of flashlight
 func _set_flashlight_dir() -> void:
 	flashlight.rotation = lerp_angle(flashlight.rotation,
-		(get_local_mouse_position() + Vector2.DOWN * 16).angle(), 0.01)
+		(get_local_mouse_position() + Vector2.DOWN * 16).angle(), 0.02)
 
 # Add enemies to a check.
 func _on_LightArea_area_entered(area : Area2D) -> void:
