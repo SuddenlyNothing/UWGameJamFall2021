@@ -60,7 +60,7 @@ func is_player_in_ray() -> bool:
 
 
 func is_in_start_pos_range() -> bool:
-	return position.distance_squared_to(start_pos) < 200
+	return position.distance_squared_to(start_pos) <= 600.0
 
 
 func reset_position() -> void:
