@@ -21,13 +21,13 @@ __meta__ = {
 }
 
 [node name="Label" type="Label" parent="V"]
-margin_left = 485.0
+margin_left = 359.0
 margin_top = 96.0
-margin_right = 538.0
+margin_right = 665.0
 margin_bottom = 126.0
 size_flags_horizontal = 4
 size_flags_vertical = 6
-text = "Title"
+text = "In the Shadow of Lucidity"
 
 [node name="V" type="VBoxContainer" parent="V"]
 margin_top = 226.0
