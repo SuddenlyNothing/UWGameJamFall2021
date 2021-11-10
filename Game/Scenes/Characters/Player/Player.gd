@@ -43,8 +43,13 @@ func _physics_process(delta : float) -> void:
 
 # Sets the x scale of the flip node to match the given x_dir.
 func _set_facing() -> void:
-	if sign(get_local_mouse_position().normalized().x) != sign(flip.scale.x):
-		flip.scale.x *= -1
+	var mouse_angle = get_local_mouse_position().angle()
+	if mouse_angle > 0.75 * PI || mouse_angle < -0.75 * PI:
+		if flip.scale.x > 0:
+			flip.scale.x *= -1
+	else:
+		if flip.scale.x < 0:
+			flip.scale.x *= -1
 
 # Sets input to player input.
 func _get_input() -> void:
