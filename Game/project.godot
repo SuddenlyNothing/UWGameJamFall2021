@@ -56,7 +56,7 @@ _global_script_class_icons={
 
 [application]
 
-config/name="UWGameProject"
+config/name="Shadow of Lucidity"
 run/main_scene="res://Scenes/UI/MainMenu.tscn"
 config/icon="res://Assets/Art/monster.png"
 
