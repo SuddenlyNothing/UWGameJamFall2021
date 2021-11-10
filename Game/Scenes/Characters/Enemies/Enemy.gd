@@ -34,5 +34,5 @@ func get_corners() -> PoolVector2Array:
 	return corners
 
 
-func show_lose_screen() -> void:
-	Global.goto_scene(lose_screen)
+func kill_player() -> void:
+	get_tree().call_group("player", "kill")

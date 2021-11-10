@@ -10,8 +10,8 @@ onready var label := $Label
 onready var sight_collision := $Sight/CollisionShape2D
 
 var velocity := Vector2()
-var acceleration : float = 500.0
-var retreat_acceleration : float = 7000.0
+var steering : float = 0.02
+var retreat_steering : float = 0.1
 var max_move_speed : float = 500.0
 var max_retreat_speed : float = 1400.0
 onready var max_move_speed_squared = max_move_speed * max_move_speed
@@ -21,9 +21,10 @@ var ray_offset : float = 500.0 # Used to make sure the ray isn't hitting the wal
 var is_player_in_sight : bool = false
 var difficulty : int = 0 setget set_difficulty
 
+var always_attack : bool = false
+
 
 func _ready() -> void:
-	set_difficulty(1)
 	arm.points[0] = start_pos
 	arm.points[1] = start_pos
 
@@ -33,17 +34,15 @@ func _process(delta : float) -> void:
 
 
 func accelerate_to_start(delta : float) -> void:
-	velocity += (position.direction_to(start_pos) * retreat_acceleration - velocity) * delta
+#	velocity += (position.direction_to(start_pos) * retreat_acceleration - velocity) * delta
 #	velocity += position.direction_to(start_pos) * retreat_acceleration * delta
-	if velocity.length_squared() > max_retreat_speed_squared:
-		velocity = velocity.normalized() * max_retreat_speed
+	velocity = lerp(velocity, position.direction_to(start_pos) * max_retreat_speed, retreat_steering)
 
 
 func accelerate_to_player(delta : float) -> void:
-	velocity += (position.direction_to(player.position) * acceleration - velocity) * delta
+#	velocity += (position.direction_to(player.position) * acceleration - velocity) * delta
 #	velocity += position.direction_to(player.position) * acceleration * delta
-	if velocity.length_squared() > max_move_speed_squared:
-		velocity = velocity.normalized() * max_move_speed
+	velocity = lerp(velocity, position.direction_to(player.position) * max_move_speed, steering)
 
 
 func apply_velocity(delta : float) -> void:
@@ -53,7 +52,7 @@ func apply_velocity(delta : float) -> void:
 
 
 func is_player_in_ray() -> bool:
-	if difficulty == 2:
+	if always_attack:
 		return true
 	sight_ray.position = position.direction_to(player.position) * ray_offset
 	sight_ray.cast_to = player.position - sight_ray.global_position
@@ -98,7 +97,10 @@ func _on_RetreatTimer_timeout():
 func _on_Hitbox_body_entered(body):
 	if not body.is_in_group("player"):
 		return
-	.show_lose_screen()
+	set_process(false)
+	shadow_hand_states.set_physics_process(false)
+	.kill_player()
+	get_tree().call_group("shadow_hand", "set_difficulty", 2)
 
 
 func set_difficulty(dif : int) -> void:
@@ -106,21 +108,23 @@ func set_difficulty(dif : int) -> void:
 	difficulty = dif
 	match dif:
 		0: # default
-			acceleration = 500
+			steering = 0.02
 			max_move_speed = 500
 			sight_collision.shape.radius = 2500
-			sight_collision.call_deferred("set_disabled", false)
 		1: # medium
-			acceleration = 3500.0
+			steering = 0.05
 			max_move_speed = 1000.0
 			sight_collision.shape.radius = 3500
 			ray_offset = 700
-			sight_collision.call_deferred("set_disabled", false)
 		2: # impossible
-			acceleration = 14000.0
+			steering = 0.1
 			max_move_speed = 2000.0
 			sight_collision.shape.radius = 10000
 			ray_offset = 1000
-			sight_collision.call_deferred("set_disabled", true)
-			yield(get_tree(), "idle_frame")
-			is_player_in_sight = true
+
+
+func set_to_attack() -> void:
+	always_attack = true
+	retreat_timer.stop()
+	shadow_hand_states.call_deferred("set_state", "attack")
+	is_player_in_sight = true

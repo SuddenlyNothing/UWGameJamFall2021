@@ -1,7 +1,10 @@
 extends KinematicBody2D
 class_name Player
 
+const LostLightMask := preload("res://Assets/Temp/LostLightMask.png")
+
 export(float) var move_speed : float = 500
+export(String, FILE, "*.tscn") var lose_screen
 
 onready var flip := $Flip
 onready var flashlight := $FlashLight
@@ -9,11 +12,16 @@ onready var light_cast := $LightCast
 onready var light_area_collision := $FlashLight/LightArea/CollisionPolygon2D
 onready var animated_sprite := $Flip/AnimatedSprite
 onready var footstep_sfx := $FootstepSFX
+onready var camera_shake := $CameraShake
+onready var death_timer := $DeathTimer
+onready var t := $Tween
 
 var light_entered_enemies = {}
 var light_detected_enemies = {}
 
 var input : Vector2 = Vector2()
+
+var killed : bool = false
 
 
 func _ready() -> void:
@@ -54,7 +62,7 @@ func _on_Detector_area_entered(area : Area2D) -> void:
 # Sets direction of flashlight
 func _set_flashlight_dir() -> void:
 	flashlight.rotation = lerp_angle(flashlight.rotation,
-		(get_local_mouse_position() + Vector2.DOWN * 16).angle(), 0.02)
+		(get_local_mouse_position() + Vector2.DOWN * 16).angle(), 0.01)
 
 # Add enemies to a check.
 func _on_LightArea_area_entered(area : Area2D) -> void:
@@ -166,3 +174,26 @@ func _on_AnimatedSprite_frame_changed():
 				footstep_sfx.play()
 			3:
 				footstep_sfx.play()
+
+
+func kill() -> void:
+	if killed:
+		return
+	killed = true
+	set_process(false)
+	input = Vector2()
+	animated_sprite.stop()
+	animated_sprite.animation = "walk_down"
+	animated_sprite.frame = 3
+	camera_shake.shake(1.0)
+	t.interpolate_property(camera_shake, "zoom", Vector2.ONE * 5, Vector2.ONE * 2, 1,
+		Tween.TRANS_SINE, Tween.EASE_IN_OUT)
+	t.start()
+	light_area_collision.call_deferred("set_disabled", true)
+	get_tree().call_group("shadow_hand", "set_to_attack")
+	flashlight.texture = LostLightMask
+	death_timer.start()
+
+
+func _on_DeathTimer_timeout():
+	Global.goto_scene(lose_screen)
