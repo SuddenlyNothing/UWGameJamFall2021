@@ -13,6 +13,7 @@ script = ExtResource( 2 )
 next_scene = "res://Scenes/UI/WinScreen.tscn"
 
 [node name="Sprite" type="Sprite" parent="."]
+modulate = Color( 1, 1, 1, 0.392157 )
 texture = ExtResource( 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
