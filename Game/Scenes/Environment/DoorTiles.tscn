@@ -29,7 +29,7 @@ points = PoolVector2Array( 500, 500, 0, 500, 0, 0, 500, 0 )
 0/autotile/occluder_map = [ Vector2( 0, 0 ), SubResource( 6 ), Vector2( 0, 1 ), SubResource( 7 ) ]
 0/autotile/navpoly_map = [  ]
 0/autotile/priority_map = [  ]
-0/autotile/z_index_map = [ Vector3( 0, 0, 100 ) ]
+0/autotile/z_index_map = [ Vector3( 0, 0, 50 ) ]
 0/occluder_offset = Vector2( 0, 0 )
 0/navigation_offset = Vector2( 0, 0 )
 0/shape_offset = Vector2( 0, 0 )
@@ -53,7 +53,7 @@ points = PoolVector2Array( 500, 500, 0, 500, 0, 0, 500, 0 )
 0/z_index = 0
 
 [node name="DoorTiles" type="TileMap"]
-light_mask = 0
+light_mask = 2
 tile_set = SubResource( 3 )
 cell_size = Vector2( 500, 500 )
 format = 1

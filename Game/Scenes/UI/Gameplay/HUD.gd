@@ -3,18 +3,9 @@ class_name HUD
 
 const ItemDisplay := preload("res://Scenes/Characters/Player/ItemDisplay.tscn")
 
-export(float, 1.0, 300.0) var time_amount : float = 60
-
-signal no_time
-
 var items_to_node : Array = []
 
 onready var item_display_parent := $M/H
-onready var time_progress := $M2/TimeProgress
-
-
-func _ready() -> void:
-	time_progress.start_timer(time_amount)
 
 # Returns true if the player has collected the given item_name.
 func has_item(item_name : String) -> bool:
@@ -56,7 +47,3 @@ func uncollect_item(item_name : String) -> bool:
 			i[2] = false
 			return true
 	return false
-
-
-func _on_TimeProgress_no_time():
-	emit_signal("no_time")

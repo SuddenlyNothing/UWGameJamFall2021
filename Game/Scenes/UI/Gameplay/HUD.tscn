@@ -1,7 +1,6 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=2 format=2]
 
 [ext_resource path="res://Scenes/UI/Gameplay/HUD.gd" type="Script" id=1]
-[ext_resource path="res://Scenes/UI/Gameplay/TimeProgress.tscn" type="PackedScene" id=2]
 
 [node name="HUD" type="CanvasLayer" groups=["hud"]]
 script = ExtResource( 1 )
@@ -19,19 +18,3 @@ margin_top = 450.0
 margin_right = 1024.0
 margin_bottom = 600.0
 alignment = 1
-
-[node name="M2" type="MarginContainer" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
-custom_constants/margin_left = 20
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="TimeProgress" parent="M2" instance=ExtResource( 2 )]
-margin_left = 20.0
-margin_top = 150.0
-margin_right = 40.0
-margin_bottom = 450.0
-
-[connection signal="no_time" from="M2/TimeProgress" to="." method="_on_TimeProgress_no_time"]

@@ -17,5 +17,11 @@ func _ready() -> void:
 
 # Frees this node and returns the item's info
 func collect() -> Dictionary:
+	var sfx := AudioStreamPlayer.new()
+	sfx.bus = "SFX"
+	sfx.stream = preload("res://Assets/SFX/item-pickup.wav")
+	get_parent().add_child(sfx)
+	sfx.play()
+	sfx.connect("finished", sfx, "queue_free")
 	queue_free()
 	return item_info

@@ -23,19 +23,18 @@ __meta__ = {
 
 [node name="Label" type="Label" parent="V"]
 margin_left = 308.0
-margin_top = 91.0
+margin_top = 194.0
 margin_right = 716.0
-margin_bottom = 207.0
+margin_bottom = 310.0
 size_flags_horizontal = 4
-size_flags_vertical = 6
 custom_fonts/font = ExtResource( 1 )
 text = "You Lost"
 
 [node name="V" type="VBoxContainer" parent="V"]
-margin_top = 405.0
+margin_top = 314.0
 margin_right = 1024.0
-margin_bottom = 497.0
-size_flags_vertical = 6
+margin_bottom = 406.0
+size_flags_vertical = 4
 custom_constants/separation = 20
 alignment = 1
 

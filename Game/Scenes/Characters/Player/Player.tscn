@@ -9,10 +9,6 @@
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 87, 32.32 )
 
-[sub_resource type="AtlasTexture" id=4]
-atlas = ExtResource( 1 )
-region = Rect2( 0, 500, 500, 500 )
-
 [sub_resource type="AtlasTexture" id=10]
 atlas = ExtResource( 1 )
 region = Rect2( 500, 500, 500, 500 )
@@ -28,22 +24,6 @@ region = Rect2( 1500, 500, 500, 500 )
 [sub_resource type="AtlasTexture" id=9]
 atlas = ExtResource( 1 )
 region = Rect2( 0, 500, 500, 500 )
-
-[sub_resource type="AtlasTexture" id=13]
-atlas = ExtResource( 1 )
-region = Rect2( 500, 1500, 500, 500 )
-
-[sub_resource type="AtlasTexture" id=14]
-atlas = ExtResource( 1 )
-region = Rect2( 1000, 1500, 500, 500 )
-
-[sub_resource type="AtlasTexture" id=15]
-atlas = ExtResource( 1 )
-region = Rect2( 1500, 1500, 500, 500 )
-
-[sub_resource type="AtlasTexture" id=16]
-atlas = ExtResource( 1 )
-region = Rect2( 0, 1500, 500, 500 )
 
 [sub_resource type="AtlasTexture" id=5]
 atlas = ExtResource( 1 )
@@ -61,16 +41,36 @@ region = Rect2( 1500, 0, 500, 500 )
 atlas = ExtResource( 1 )
 region = Rect2( 0, 0, 500, 500 )
 
+[sub_resource type="AtlasTexture" id=13]
+atlas = ExtResource( 1 )
+region = Rect2( 500, 1500, 500, 500 )
+
+[sub_resource type="AtlasTexture" id=14]
+atlas = ExtResource( 1 )
+region = Rect2( 1000, 1500, 500, 500 )
+
+[sub_resource type="AtlasTexture" id=15]
+atlas = ExtResource( 1 )
+region = Rect2( 1500, 1500, 500, 500 )
+
+[sub_resource type="AtlasTexture" id=16]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 1500, 500, 500 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 500, 500, 500 )
+
 [sub_resource type="SpriteFrames" id=3]
 animations = [ {
-"frames": [ SubResource( 4 ) ],
-"loop": false,
-"name": "idle",
-"speed": 5.0
-}, {
 "frames": [ SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 9 ) ],
 "loop": true,
 "name": "walk_down",
+"speed": 7.0
+}, {
+"frames": [ SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ) ],
+"loop": true,
+"name": "walk_up",
 "speed": 7.0
 }, {
 "frames": [ SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ) ],
@@ -78,10 +78,10 @@ animations = [ {
 "name": "walk_horizontal",
 "speed": 7.0
 }, {
-"frames": [ SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ) ],
-"loop": true,
-"name": "walk_up",
-"speed": 7.0
+"frames": [ SubResource( 4 ) ],
+"loop": false,
+"name": "idle",
+"speed": 5.0
 } ]
 
 [sub_resource type="RectangleShape2D" id=2]
@@ -132,6 +132,7 @@ texture_scale = 5.0
 mode = 3
 range_z_min = -50
 range_z_max = 50
+range_item_cull_mask = 3
 shadow_enabled = true
 
 [node name="LightArea" type="Area2D" parent="FlashLight"]
