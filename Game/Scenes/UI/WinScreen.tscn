@@ -224,13 +224,20 @@ margin_top = 199.0
 margin_right = 707.0
 margin_bottom = 315.0
 size_flags_horizontal = 4
+size_flags_vertical = 6
 custom_fonts/font = ExtResource( 4 )
 text = "You Win"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Menu" type="Button" parent="V"]
+[node name="V" type="VBoxContainer" parent="V"]
+margin_right = 40.0
+margin_bottom = 40.0
+size_flags_vertical = 6
+custom_constants/separation = 20
+
+[node name="Menu" type="Button" parent="V/V"]
 margin_left = 445.0
 margin_top = 365.0
 margin_right = 579.0
