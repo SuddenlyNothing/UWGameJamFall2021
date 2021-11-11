@@ -24,7 +24,6 @@ _data = [ Vector2( 0, 4 ), 0.0, 0.0, 0, 0, Vector2( 1, 1 ), 0.0, 0.0, 0, 0 ]
 audio_stream = ExtResource( 5 )
 
 [node name="ShadowHand" groups=["shadow_hand"] instance=ExtResource( 1 )]
-modulate = Color( 1, 1, 1, 0.196078 )
 script = ExtResource( 3 )
 
 [node name="ShadowHandStates" type="Node" parent="." index="0"]

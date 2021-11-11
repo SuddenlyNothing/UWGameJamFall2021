@@ -33,12 +33,12 @@ margin_bottom = 365.0
 custom_constants/separation = 20
 
 [node name="Joseph" type="Label" parent="V/V"]
-margin_left = 247.0
-margin_right = 777.0
+margin_left = 259.0
+margin_right = 764.0
 margin_bottom = 30.0
 size_flags_horizontal = 4
 size_flags_vertical = 6
-text = "Joseph Kularski - Sound and Game Designer"
+text = "Joseph Kularski - Sound and Game Design"
 
 [node name="Yerim" type="Label" parent="V/V"]
 margin_left = 414.0
