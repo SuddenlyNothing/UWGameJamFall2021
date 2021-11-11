@@ -33,7 +33,7 @@ func _process(delta : float) -> void:
 	_get_input()
 	_set_facing()
 	_set_anim()
-	_set_flashlight_dir()
+	_set_flashlight_dir(delta)
 
 
 func _physics_process(delta : float) -> void:
@@ -65,9 +65,9 @@ func _on_Detector_area_entered(area : Area2D) -> void:
 	get_tree().call_group("hud", "collect_item", area.collect().item_name)
 
 # Sets direction of flashlight
-func _set_flashlight_dir() -> void:
+func _set_flashlight_dir(delta : float) -> void:
 	flashlight.rotation = lerp_angle(flashlight.rotation,
-		(get_local_mouse_position() + Vector2.DOWN * 16).angle(), 0.01)
+		(get_local_mouse_position() + Vector2.DOWN * 16).angle(), 10 * delta)
 
 # Add enemies to a check.
 func _on_LightArea_area_entered(area : Area2D) -> void:
