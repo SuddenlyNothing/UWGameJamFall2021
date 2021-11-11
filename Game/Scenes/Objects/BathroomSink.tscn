@@ -6,6 +6,8 @@
 extents = Vector2( 436.456, 432 )
 
 [node name="BathroomSink" type="StaticBody2D"]
+collision_layer = 0
+collision_mask = 2
 
 [node name="Sprite2" type="Sprite" parent="."]
 light_mask = 2

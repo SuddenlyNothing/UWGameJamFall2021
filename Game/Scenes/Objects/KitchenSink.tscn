@@ -6,6 +6,8 @@
 extents = Vector2( 500.023, 267.962 )
 
 [node name="KitchenSink" type="StaticBody2D"]
+collision_layer = 0
+collision_mask = 2
 
 [node name="Sprite" type="Sprite" parent="."]
 light_mask = 2
