@@ -42,3 +42,6 @@ func set_active(val) -> void:
 	mouse_capture.visible = val
 	get_tree().paused = val
 
+
+func _on_ChangeScene_pressed():
+	self.active = false
